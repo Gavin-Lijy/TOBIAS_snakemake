@@ -256,7 +256,7 @@ else:
 include: os.path.join(snakefiles_dir, "preprocessing.snake")
 include: os.path.join(snakefiles_dir, "footprinting.snake")
 include: os.path.join(snakefiles_dir, "visualization.snake")
-include: os.path.join(snakefiles_dir, "wilson.snake")
+# include: os.path.join(snakefiles_dir, "wilson.snake")
 
 rule all:
 	input: 

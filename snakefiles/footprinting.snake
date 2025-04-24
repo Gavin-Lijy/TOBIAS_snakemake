@@ -23,8 +23,7 @@ rule format_motifs:
 		joined = os.path.join(OUTPUTDIR, "motifs", "all_motifs.txt")
 	conda:
 		"../environments/tobias.yaml"
-	priority: 
-		2
+
 	params:
 		motifdir = os.path.join(OUTPUTDIR, "motifs", "individual")
 	log: 
@@ -51,10 +50,9 @@ rule atacorrect:
 		config.get("atacorrect", "")
 	conda:
 		"../environments/tobias.yaml"
-	priority: 
-		2
+
 	threads: 
-		99 	#unless there are more than 99 cores, this rule will run on max threads
+		10	#unless there are more than 99 cores, this rule will run on max threads
 	log: 
 		os.path.join(OUTPUTDIR, "logs", "{condition}_atacorrect.log")
 	message: 
@@ -75,10 +73,9 @@ rule footprinting:
 		config.get("footprinting", "")
 	conda:
 		"../environments/tobias.yaml"
-	priority: 
-		2
+
 	threads: 
-		99
+		10
 	log:
 		os.path.join(OUTPUTDIR, "logs", "{condition}_footprinting.log")
 	message:
@@ -105,7 +102,7 @@ checkpoint bindetect:
 		#overview = dynamic(expand(os.path.join(OUTPUTDIR, "TFBS", "{{TF}}", "{{TF}}_overview.txt"))),
 		#figures = os.path.join(OUTPUTDIR, "TFBS", "bindetect_figures.pdf"),
 		#local = [os.path.join(OUTPUTDIR, "TFBS", fil) for fil in ["bindetect_results.txt", "bindetect_results.xlsx"]],
-	threads: 99	
+	threads: 10
 	priority: 2
 	conda:
 		"../environments/tobias.yaml"
@@ -142,10 +139,9 @@ rule join_bound:
 	output:
 		unsorted = temp(os.path.join(OUTPUTDIR, "overview", "all_{condition}_bound.tmp")),
 		final = os.path.join(OUTPUTDIR, "overview", "all_{condition}_bound.bed")
-	priority: 
-		2
+
 	threads: 
-		99	#Make sure that only one join_bound runs at a time; due to memory issues
+		10	#Make sure that only one join_bound runs at a time; due to memory issues
 	run:
 		n = 100 	#chunks of 100 files
 		

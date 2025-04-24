@@ -5,3 +5,6 @@ build/
 dist/
 *.egg
 *.egg-info
+data/
+logs/
+test_output/

@@ -22,7 +22,7 @@ flags:
   plot_correction: True
   plot_venn: True
   coverage: True
-  wilson: True
+  wilson: False
 
 #-------------------------------------------------------------------------#
 #----------------------- Default module parameters -----------------------#

@@ -83,6 +83,8 @@ rule coverage_bigwig:
 	output:
 		bedgraph = temp(os.path.join(OUTPUTDIR, "coverage", "{condition}_coverage.bg")),
 		bigwig = os.path.join(OUTPUTDIR, "coverage", "{condition}_coverage.bw")
+	resources:
+		mem_mb = 5000
 	params:
 		"-T " + os.path.join(OUTPUTDIR, "coverage")		#temporary dir for sorting
 	conda:
@@ -219,7 +221,7 @@ rule uropa:
 		peaks = os.path.join(OUTPUTDIR, "peak_annotation", "all_merged_annotated.bed"),
 		header = os.path.join(OUTPUTDIR, "peak_annotation", "all_merged_annotated_header.txt"),
 	threads: 
-		99
+		4
 	log: 
 		os.path.join(OUTPUTDIR, "logs", "uropa.log")
 	params:
