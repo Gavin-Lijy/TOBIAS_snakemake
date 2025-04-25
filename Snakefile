@@ -10,7 +10,6 @@ import datetime
 import re
 
 snakemake.utils.min_version("5.4")	#for checkpoints functionality
-
 #-------------------------------------------------------------------------------#
 #---------------------- SETUP PROCESS-RELATED CONFIGURATION --------------------#
 #-------------------------------------------------------------------------------#

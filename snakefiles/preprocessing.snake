@@ -56,6 +56,8 @@ rule conditionbam:
 		bai = os.path.join(OUTPUTDIR, "mapping", "{condition}.bam.bai")
 	threads: 
 		10
+	resources:
+		time = "8:15:00" # Time in minutes (5 hours)
 	message: 
 		"Joining individual bamfiles from condition {wildcards.condition}"
 	run:
@@ -84,7 +86,8 @@ rule coverage_bigwig:
 		bedgraph = temp(os.path.join(OUTPUTDIR, "coverage", "{condition}_coverage.bg")),
 		bigwig = os.path.join(OUTPUTDIR, "coverage", "{condition}_coverage.bw")
 	resources:
-		mem_mb = 5000
+		mem_mb = 5000,
+		time = "5:00:00" # Time in minutes (1 hour)
 	params:
 		"-T " + os.path.join(OUTPUTDIR, "coverage")		#temporary dir for sorting
 	conda:
