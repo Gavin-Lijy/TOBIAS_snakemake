@@ -3,18 +3,21 @@
 #-------------------------------------------------------------------------#
 
 data:
-  SPT: [processed/bam/Spermatids.bam]       #list of .bam-files
-  SPC: [processed/bam/Spermatocytes.bam]
   SPG: [processed/bam/Spermatogonia.bam]  #list of .bam-files
+  SPC: [processed/bam/Spermatocytes.bam]
+  SPT: [processed/bam/Spermatids.bam]       #list of .bam-files
   
 run_info:
   organism: human                           #mouse/human/zebrafish (used for macs to set "--gsize"; alternatively, set --gsize in macs parameters below)
   fasta: /home/jl9324/reference/hg38/GRCh38.primary_assembly.genome.fa                #.fasta-file containing organism genome. NOTE: must be uncompressed .fa or bgzip compressed compatible with samtools
   blacklist: data/blacklist.bed             #.bed-file containing blacklisted regions
-  gtf: /home/jl9324/reference/hg38/hg38.knownGene.gtf                    #.gtf-file for annotation of peaks. NOTE: must be uncompressed .gtf
+  gtf: /home/jl9324/reference/hg38/gencode.v47.annotation.gtf    
+              #.gtf-file for annotation of peaks. NOTE: must be uncompressed .gtf
+              # downloaded from, the 3rd col with 'gene' 
+              #https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/
   motifs: data/individual_motifs/*          #motifs (directory with files or individual files in MEME/JASPAR/PFM format)
   output: tobias             #output directory 
-  #peaks: data/merged_peaks_annotated.bed   #optional; pre-calculated annotated peaks
+  peaks: data/all_merged_annotated.bed  #optional; pre-calculated annotated peaks
   #peaks_header: data/merged_peaks_annotated_header.txt #optional; header for pre-calculated annotated peaks
 
 #Flags for parts of pipeline to include/exclude (all are True by default)

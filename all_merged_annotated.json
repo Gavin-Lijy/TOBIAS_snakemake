@@ -1,0 +1,22 @@
+{
+"queries":[
+    {"attribute_values": ["protein_coding"], "distance": [10000, 1000], "feature": ["gene"], "feature_anchor": ["start"], "filter_attribute": "gene_biotype", "name": "protein_coding_promoter", "relative_location": ["PeakInsideFeature", "FeatureInsidePeak", "Upstream", "Downstream", "OverlapStart", "OverlapEnd"], "strand": "ignore"},
+    {"attribute_values": ["protein_coding"], "distance": [1, 1], "feature": ["gene"], "feature_anchor": ["start", "center", "end"], "filter_attribute": "gene_biotype", "internals": 0.1, "name": "protein_coding_internal", "relative_location": ["PeakInsideFeature", "FeatureInsidePeak", "Upstream", "Downstream", "OverlapStart", "OverlapEnd"], "strand": "ignore"},
+    {"distance": [10000, 1000], "feature": ["gene"], "feature_anchor": ["start"], "name": "any_promoter", "relative_location": ["PeakInsideFeature", "FeatureInsidePeak", "Upstream", "Downstream", "OverlapStart", "OverlapEnd"], "strand": "ignore"},
+    {"distance": [1, 1], "feature": ["gene"], "feature_anchor": ["start", "center", "end"], "internals": 0.1, "name": "any_internal", "relative_location": ["PeakInsideFeature", "FeatureInsidePeak", "Upstream", "Downstream", "OverlapStart", "OverlapEnd"], "strand": "ignore"},
+    {"distance": [50000, 50000], "feature": ["gene"], "feature_anchor": ["start", "center", "end"], "name": "distal_enhancer", "relative_location": ["PeakInsideFeature", "FeatureInsidePeak", "Upstream", "Downstream", "OverlapStart", "OverlapEnd"], "strand": "ignore"}
+          ],
+"show_attributes": ["gene_biotype", "gene_id", "gene_name"],
+"priority": "True",
+"gtf": "tobias_/flatfiles/gencode.v47.annotation.gtf",
+"bed": "data/fountains_all_merged.bed",
+"prefix": "data/all_merged_annotated",
+"outdir": ".",
+"threads": "1",
+"output_by_query": "False"
+}
+
+// uropa --input data/all_merged_annotated.config --prefix data/all_merged_annotated --threads 4 &> data/uropa.log; 
+// cut -f 1-4,7-13,16-19 data/all_merged_annotated_finalhits.txt > data/all_merged_annotated_finalhits_sub.txt; 
+// head -n 1 data/all_merged_annotated_finalhits_sub.txt > data/all_merged_annotated_header.txt;
+// tail -n +2 data/all_merged_annotated_finalhits_sub.txt > data/all_merged_annotated.bed
